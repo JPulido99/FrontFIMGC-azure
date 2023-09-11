@@ -1,0 +1,281 @@
+.login {
+    background: #591E1E;
+}
+
+.title-login {
+    color: #591E1E;
+    text-align: center;
+    margin-bottom: 20px !important;
+}
+
+.title-modal1 {
+    color: #591E1E;
+    font-weight: bold;
+}
+
+.text-update-pass {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.text-cursor-pointer {
+    cursor: pointer;
+}
+
+.customize-card {
+    background-color: #BFBFBF;
+}
+
+.customize-flabel {
+    color: #503030;
+}
+
+.customize-label {
+    color: #262626;
+}
+
+.customize-btn-1 {
+    background: #503030;
+    border-color: #503030;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.customize-btn-2 {
+    background: #957544;
+    border-color: #957544;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.customize-btn-3 {
+    background: #957544;
+    border-color: #957544;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+.customize-btn-1:hover {
+    background-color: #957544;
+    border-color: #957544;
+}
+
+.row-nav-customize {
+    background-color: #BFBFBF;
+    min-height: 538px;
+    padding-right: 0px;
+}
+
+.footer {
+    background-color: #262626;
+    color: #BFBFBF;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 30px 0 30px 0;
+}
+
+.customice-nav-text {
+    font-weight: bold;
+}
+
+.nav-link-inicio {
+    color: #591E1E !important;
+    font-weight: bold;
+    text-decoration: none
+}
+
+.nav-link-customize {
+    color: #591E1E !important;
+    font-weight: lighter;
+}
+
+.nav-link-customize.active {
+    font-weight: lighter;
+    background-color: white !important;
+}
+
+.nav-link-customize-2 {
+    color: #503030 !important;
+    font-weight: bold;
+}
+
+.nav-link-customize-2.active {
+    background-color: white !important;
+}
+
+.horizontal-nav-link {
+    color: #591E1E;
+    font-weight: bold;
+}
+
+.customize-fielset {
+    margin-bottom: 30px;
+}
+
+.customize-legend {
+    font-weight: bold;
+    font-size: 22px;
+    color: #591E1E;
+}
+
+.customize-legend-2 {
+    font-weight: bold;
+    font-size: 20px;
+    color: #6c757d;
+}
+
+.customize-table-legend {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    color: #957544;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.thead-text-customize {
+    color: #957544;
+}
+
+.table-container {
+    margin-bottom: 35px;
+}
+
+.customize-btn-div {
+    display: flex;
+}
+
+.btn-outline-dark {
+    font-weight: bold !important;
+    border-radius: 10px;
+}
+
+.accordion-button {
+    font-weight: bold !important;
+    background-color: #BFBFBF !important;
+    color: #503030;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #591E1E;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0.3rem rgba(80, 48, 48, 0.651);
+}
+
+.accordion-body-customize {
+    background-color: #BFBFBF;
+}
+
+.container-bienvenido-titulo {
+    text-align: center;
+}
+
+.titulo-bienvenido {
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #503030;
+}
+
+.p-modal-bold {
+    font-weight: bold;
+    color: #591E1E;
+}
+
+.row-cards-customize {
+    margin-top: 0px;
+    margin-bottom: 40px;
+}
+
+.cardlink {
+    text-decoration: none;
+}
+
+.customize-card-2 {
+    cursor: pointer;
+    border-color: #503030;
+    background-color: #BFBFBF;
+    padding: 10px;
+    border-width: 2px;
+    height: 100%;
+}
+
+.customize-card-3 {
+    border-color: #503030;
+    background-color: #BFBFBF;
+    padding: 10px;
+    border-width: 2px;
+    height: 100%;
+}
+.customize-card-2 .active {
+    cursor: pointer;
+    background-color: #BFBFBF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para cards inactivos */
+  .inactive {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+.card-title-customize {
+    color: #503030;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.btn-into-table {
+    margin: 1.5px;
+    border-radius: 10px;
+}
+
+.btn-into-row {
+    margin: 1.5px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 15px
+}
+
+.customize-navbar-collapse {
+    height: 50px;
+    padding-top: 17px;
+}
+
+.overlay-container {
+    position: absolute;
+    background-color: white;
+    padding: 2px 10px;
+    color: white;
+}
+
+.customize-alert-input {
+    margin-top: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.customice-tab{
+    --bs-gutter-x: 0px !important;
+}
+
+.scroll-h-disabled{
+    margin-right: 0px;
+}
+
+.margin-navbar-icon{
+    margin-left: 10px;
+    max-width: none !important;
+}
+
+.customize-navbar-brand{
+    color:#591E1E !important;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+}
