@@ -10,7 +10,7 @@ import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
 
 const PlanEstudios = () => {
-  const API_URL = "https://fimgc-back.rj.r.appspot.com/api";
+  const API_URL = "https://backfimgc.azurewebsites.net/api";
 
   //Poner el url del controlador del back aquí
   const [planAModificar, setPlanAModificar] = useState(null);
@@ -137,7 +137,7 @@ const PlanEstudios = () => {
 
   useEffect(() => {
     axios
-      .get("https://fimgc-back.rj.r.appspot.com/api/plan/list")
+      .get("https://backfimgc.azurewebsites.net/api/plan/list")
       .then((response) => {
         setDatos(response.data);
       })
@@ -147,7 +147,7 @@ const PlanEstudios = () => {
   }, []);
   useEffect(() => {
     axios
-      .get("https://fimgc-back.rj.r.appspot.com/api/escuela/list")
+      .get("https://backfimgc.azurewebsites.net/api/escuela/list")
       .then((response) => {
         setEscuelas(response.data);
       })
@@ -158,7 +158,7 @@ const PlanEstudios = () => {
   //ACTUALIZAR TABLA
   const actualizarTabla = () => {
     axios
-      .get("https://fimgc-back.rj.r.appspot.com/api/plan/")
+      .get("https://backfimgc.azurewebsites.net/api/plan/")
       .then((response) => {
         setDatos(response.data);
       })
@@ -169,7 +169,7 @@ const PlanEstudios = () => {
   //ELIMINAR REGISTRO
   const handleEliminar = (id) => {
     axios
-      .delete(`https://fimgc-back.rj.r.appspot.com/api/plan/${id}`)
+      .delete(`https://backfimgc.azurewebsites.net/api/plan/${id}`)
       .then((response) => {
         actualizarTabla();
         // Manejar la respuesta exitosa
@@ -221,7 +221,7 @@ const PlanEstudios = () => {
       };
 
       axios
-        .post("https://fimgc-back.rj.r.appspot.com/api/plan/registrar", postData)
+        .post("https://backfimgc.azurewebsites.net/api/plan/registrar", postData)
         .then((response) => {
           // Manejar la respuesta exitosa
           console.log(response.data);
@@ -267,7 +267,7 @@ const [valorC8Mod, setValorC8Mod] = useState("");
 
 const handleModificar = async (id) => {
   try {
-    const response = await axios.get(`https://fimgc-back.rj.r.appspot.com/api/plan/${id}`);
+    const response = await axios.get(`https://backfimgc.azurewebsites.net/api/plan/${id}`);
     const plan = response.data;
     if (plan) {
       setNombrePlanMod(plan.nombrePlan);

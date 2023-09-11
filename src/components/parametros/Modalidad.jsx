@@ -68,7 +68,7 @@ const Modalidad = () => {
       console.log({ nombre, descripcion });
       //aquí va lo del axios, me parece.
       axios
-        .post("https://fimgc-back.rj.r.appspot.com/api/modalidadIngreso", {
+        .post("https://backfimgc.azurewebsites.net/api/modalidadIngreso", {
           nombre: nombre,
           descripcion: descripcion,
         })
@@ -97,7 +97,7 @@ const Modalidad = () => {
       console.log({ nombre, descripcion });
       //aquí va lo del axios, me parece.
       axios
-      .put(`https://fimgc-back.rj.r.appspot.com/api/modalidadIngreso/${modalidadSeleccionadaId}`, {
+      .put(`https://backfimgc.azurewebsites.net/api/modalidadIngreso/${modalidadSeleccionadaId}`, {
         nombre: nombre,
         descripcion:descripcion,
       })
@@ -125,7 +125,7 @@ const Modalidad = () => {
 
   function cargarElementos() {
     axios
-      .get("https://fimgc-back.rj.r.appspot.com/api/modalidadIngreso/list")
+      .get("https://backfimgc.azurewebsites.net/api/modalidadIngreso/list")
       .then((response) => {
         setModalidades(response.data);
         console.log("modalidadesitas:", response.data);
@@ -140,7 +140,7 @@ const Modalidad = () => {
   const [modalidadSeleccionadaId, setModalidadSeleccionadaId] = useState(null);
   function eliminarModalidad(id) {
     axios
-      .delete(`https://fimgc-back.rj.r.appspot.com/api/modalidadIngreso/${id}`)
+      .delete(`https://backfimgc.azurewebsites.net/api/modalidadIngreso/${id}`)
       .then((response) => {
         setModalidades(modalidades.filter((modalidad) => modalidad.id !== id));
       })

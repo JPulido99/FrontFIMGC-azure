@@ -8,7 +8,7 @@ import AuthContext from '../../Context/AuthProvider';
 const TramitarTitulacion = () => {
   const {user} = useContext(AuthContext);
   
-  const [escuelas, obtenerEscuelas] = useGet("https://fimgc-back.rj.r.appspot.com/api/escuela/list");
+  const [escuelas, obtenerEscuelas] = useGet("https://backfimgc.azurewebsites.net/api/escuela/list");
   useEffect(() => {
     
     obtenerEscuelas()
@@ -163,7 +163,7 @@ const TramitarTitulacion = () => {
       };
 
       const response = await axios.post(
-        `https://fimgc-back.rj.r.appspot.com/api/expediente/${user.id}/expedienteUserEscuelaTitulo?escuelaId=${selectedEscuelaId}&telefono=${telefono}`,
+        `https://backfimgc.azurewebsites.net/api/expediente/${user.id}/expedienteUserEscuelaTitulo?escuelaId=${selectedEscuelaId}&telefono=${telefono}`,
         expedienteData,
         {
           headers: {
@@ -188,7 +188,7 @@ const TramitarTitulacion = () => {
   const obtenerNombreEscuela = (selectedEscuelaId) => {
     // Realiza una consulta a tu API para obtener el nombre de la escuela por su ID
     return axios
-      .get(`https://fimgc-back.rj.r.appspot.com/api/escuela/${selectedEscuelaId}`)
+      .get(`https://backfimgc.azurewebsites.net/api/escuela/${selectedEscuelaId}`)
       .then((response) => {
         return response.data.nombre;
       })

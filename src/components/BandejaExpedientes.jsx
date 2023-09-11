@@ -26,7 +26,7 @@ const BandejaExpedientes = () => {
 
   const handleBuscarClickMMxNombre = () => {
     axios
-      .get(`https://fimgc-back.rj.r.appspot.com/api/documento/findMMxNombre?Name=${nombreInteresado}&tipoDoc=${tipoDoc}`)
+      .get(`https://backfimgc.azurewebsites.net/api/documento/findMMxNombre?Name=${nombreInteresado}&tipoDoc=${tipoDoc}`)
       .then((response) => {
         if (response.data && response.data.length > 0) {
           console.log(response.data);
@@ -53,7 +53,7 @@ const BandejaExpedientes = () => {
 
   const handleBuscarClickMMxExp = () => {
     axios
-      .get(`https://fimgc-back.rj.r.appspot.com/api/documento/findMMxNroExpediente?nroExpediente=${numeroExpediente}&tipoDoc=${tipoDoc}`)
+      .get(`https://backfimgc.azurewebsites.net/api/documento/findMMxNroExpediente?nroExpediente=${numeroExpediente}&tipoDoc=${tipoDoc}`)
       .then((response) => {
         if (response.data && response.data.length > 0) {
           console.log(response.data);
@@ -71,7 +71,7 @@ const BandejaExpedientes = () => {
 
 
   const handleVerClick = (archivopdfSF) => {
-    const baseUrl = 'https://fimgc-back.rj.r.appspot.com'; // Cambia esto si es necesario
+    const baseUrl = 'https://backfimgc.azurewebsites.net'; // Cambia esto si es necesario
     const pdfUrl = `${baseUrl}/${archivopdfSF}`;
     window.open(pdfUrl, '_blank');
   };

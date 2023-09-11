@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 function eliminarDatos() {
-    axios.delete('https://fimgc-back.rj.r.appspot.com/api/escuela/listEscuelas/eliminar/4')
+    axios.delete('https://backfimgc.azurewebsites.net/api/escuela/listEscuelas/eliminar/4')
     .then(function (response) {
       console.log('*******',response);
     })

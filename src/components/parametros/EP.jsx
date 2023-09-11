@@ -54,7 +54,7 @@ const EP = () => {
       cargarElementos();
       //aquí va lo del axios, me parece.
       axios
-        .post("https://fimgc-back.rj.r.appspot.com/api/escuela", {
+        .post("https://backfimgc.azurewebsites.net/api/escuela", {
           nombre: nombre,
           director: director,
         })
@@ -76,7 +76,7 @@ const EP = () => {
   //MOSTRAR ELEMENTOS
   function cargarElementos() {
     axios
-      .get("https://fimgc-back.rj.r.appspot.com/api/escuela")
+      .get("https://backfimgc.azurewebsites.net/api/escuela")
       .then((response) => {
         setEscuelas(response.data);
       })
@@ -109,7 +109,7 @@ const EP = () => {
 
       //aquí va lo del axios para actualizar los datos
       axios
-        .put(`https://fimgc-back.rj.r.appspot.com/api/escuela/${escuelaSeleccionadaId}`, {
+        .put(`https://backfimgc.azurewebsites.net/api/escuela/${escuelaSeleccionadaId}`, {
           nombre: nombre,
           director: director,
         })
@@ -149,7 +149,7 @@ const EP = () => {
   //FUNCION PARA ELIMINAR
   function eliminarEP(id) {
     axios
-      .delete(`https://fimgc-back.rj.r.appspot.com/api/escuela/${id}`)
+      .delete(`https://backfimgc.azurewebsites.net/api/escuela/${id}`)
       .then((response) => {
         setEscuelas(escuelas.filter((escuela) => escuela.id !== id));
       })

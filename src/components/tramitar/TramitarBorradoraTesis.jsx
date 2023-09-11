@@ -8,7 +8,7 @@ import useTooltips from '../../utilitarios/useTooltips';
 const TramitarBorradoraTesis = () => {
   const { user } = useContext(AuthContext);
 
-  const [escuelas, obtenerEscuelas] = useGet("https://fimgc-back.rj.r.appspot.com/api/escuela/list");
+  const [escuelas, obtenerEscuelas] = useGet("https://backfimgc.azurewebsites.net/api/escuela/list");
   useEffect(() => {
     obtenerEscuelas()
   }, [])
@@ -54,7 +54,7 @@ const TramitarBorradoraTesis = () => {
 
   const handleBuscarAsesor = () => {
     axios
-      .get(`https://fimgc-back.rj.r.appspot.com/users/buscarDocentes?firstName=${nombreAsesor}`)
+      .get(`https://backfimgc.azurewebsites.net/users/buscarDocentes?firstName=${nombreAsesor}`)
       .then((response) => {
         if (response.data && response.data.length > 0) {
           setDocentes(response.data);
@@ -69,7 +69,7 @@ const TramitarBorradoraTesis = () => {
   };
   const handleBuscarMiembro = () => {
     axios
-      .get(`https://fimgc-back.rj.r.appspot.com/users/buscarDocentes?firstName=${nombreMiembro}`)
+      .get(`https://backfimgc.azurewebsites.net/users/buscarDocentes?firstName=${nombreMiembro}`)
       .then((response) => {
         if (response.data && response.data.length > 0) {
           setDocentes(response.data);
@@ -84,7 +84,7 @@ const TramitarBorradoraTesis = () => {
   };
   const handleBuscarPresidente = () => {
     axios
-      .get(`https://fimgc-back.rj.r.appspot.com/users/buscarDocentes?firstName=${nombrePresidente}`)
+      .get(`https://backfimgc.azurewebsites.net/users/buscarDocentes?firstName=${nombrePresidente}`)
       .then((response) => {
         if (response.data && response.data.length > 0) {
           setDocentes(response.data);
@@ -208,7 +208,7 @@ const TramitarBorradoraTesis = () => {
   const obtenerNombreEscuela = (selectedEscuelaId) => {
     // Realiza una consulta a tu API para obtener el nombre de la escuela por su ID
     return axios
-      .get(`https://fimgc-back.rj.r.appspot.com/api/escuela/${selectedEscuelaId}`)
+      .get(`https://backfimgc.azurewebsites.net/api/escuela/${selectedEscuelaId}`)
       .then((response) => {
         return response.data.nombre;
       })
@@ -278,7 +278,7 @@ const TramitarBorradoraTesis = () => {
       };
 
       const response = await axios.post(
-        `https://fimgc-back.rj.r.appspot.com/api/expediente/${user.id}/expedienteUserEscuelaBorrador?asesorId=${asesorId}&miembroId=${miembroId}&presidenteId=${presidenteId}&escuelaId=${selectedEscuelaId}&telefono=${telefono}`,
+        `https://backfimgc.azurewebsites.net/api/expediente/${user.id}/expedienteUserEscuelaBorrador?asesorId=${asesorId}&miembroId=${miembroId}&presidenteId=${presidenteId}&escuelaId=${selectedEscuelaId}&telefono=${telefono}`,
         expedienteData,
         {
           headers: {

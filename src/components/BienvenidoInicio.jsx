@@ -39,7 +39,7 @@ const BienvenidoInicio = () => {
     setNroDoc(inputNroDoc);
     console.log(inputNroDoc);
     try {
-      const veriResponse = await axios.get(`https://fimgc-back.rj.r.appspot.com/api/expediente/${inputNroDoc}`);
+      const veriResponse = await axios.get(`https://backfimgc.azurewebsites.net/api/expediente/${inputNroDoc}`);
       console.log(veriResponse.data);
       if (veriResponse.data) {
         setAlertaExp({ message: mensajesAlert.existe, type: 'success' });

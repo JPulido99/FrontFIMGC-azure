@@ -47,7 +47,7 @@ const RestablecerCont = () => {
 
     if (passwordsMatch) {
       try {
-        const response = await axios.put(`https://fimgc-back.rj.r.appspot.com/users/${email}/update-password`, {
+        const response = await axios.put(`https://backfimgc.azurewebsites.net/users/${email}/update-password`, {
           newPassword: password
         });
 

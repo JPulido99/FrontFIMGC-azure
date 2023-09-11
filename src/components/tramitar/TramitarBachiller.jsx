@@ -8,7 +8,7 @@ import useTooltips from '../../utilitarios/useTooltips';
 const TramitarBachiller = () => {
   const { user } = useContext(AuthContext);
 
-  const [escuelas, obtenerEscuelas] = useGet("https://fimgc-back.rj.r.appspot.com/api/escuela/list");
+  const [escuelas, obtenerEscuelas] = useGet("https://backfimgc.azurewebsites.net/api/escuela/list");
   useEffect(() => {
     obtenerEscuelas()
   }, [])
@@ -178,7 +178,7 @@ const TramitarBachiller = () => {
       };
 
       const response = await axios.post(
-        `https://fimgc-back.rj.r.appspot.com/api/expediente/${user.id}/expedienteUserEscuelaBachiller?escuelaId=${selectedEscuelaId}&modalidadIngresoId=${selectedModalidadId}&telefono=${telefono}`,
+        `https://backfimgc.azurewebsites.net/api/expediente/${user.id}/expedienteUserEscuelaBachiller?escuelaId=${selectedEscuelaId}&modalidadIngresoId=${selectedModalidadId}&telefono=${telefono}`,
         expedienteData,
         {
           headers: {
@@ -221,7 +221,7 @@ const TramitarBachiller = () => {
   const [selectedModalidadId, setSelectedModalidadId] = useState("");
   useEffect(() => {
     axios
-      .get("https://fimgc-back.rj.r.appspot.com/api/modalidadIngreso/list")
+      .get("https://backfimgc.azurewebsites.net/api/modalidadIngreso/list")
       .then((response) => {
         setModalidades(response.data);
       })
@@ -237,7 +237,7 @@ const TramitarBachiller = () => {
 
     // Promesa para obtener el nombre de la escuela
     const nombreEscuelaPromise = axios
-      .get(`https://fimgc-back.rj.r.appspot.com/api/escuela/${selectedEscuelaId}`)
+      .get(`https://backfimgc.azurewebsites.net/api/escuela/${selectedEscuelaId}`)
       .then((response) => response.data.nombre)
 
       .catch((error) => {
@@ -247,7 +247,7 @@ const TramitarBachiller = () => {
 
     // Promesa para obtener la lista de planes de estudio
     const planesDeEstudioPromise = axios
-      .get(`https://fimgc-back.rj.r.appspot.com/api/escuela/${selectedEscuelaId}/planes`)
+      .get(`https://backfimgc.azurewebsites.net/api/escuela/${selectedEscuelaId}/planes`)
       .then((response) => response.data)
       .catch((error) => {
         console.error(error);
@@ -267,7 +267,7 @@ const TramitarBachiller = () => {
   const obtenerNombreModalidad = (selectedModalidadId) => {
     // Realiza una consulta a tu API para obtener el nombre de la escuela por su ID
     return axios
-      .get(`https://fimgc-back.rj.r.appspot.com/api/modalidadIngreso/${selectedModalidadId}`)
+      .get(`https://backfimgc.azurewebsites.net/api/modalidadIngreso/${selectedModalidadId}`)
       .then((response) => {
         return response.data.nombre;
       })

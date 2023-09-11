@@ -25,7 +25,7 @@ const Dictamen = () => {
     setNroDoc(inputNroDoc);
     console.log(inputNroDoc);
     try {
-      const veriResponse = await axios.get(`https://fimgc-back.rj.r.appspot.com/api/expediente/${inputNroDoc}`);
+      const veriResponse = await axios.get(`https://backfimgc.azurewebsites.net/api/expediente/${inputNroDoc}`);
       console.log(veriResponse.data)
       setTramiteExpediente(veriResponse.data.tramite.nombre)      
       console.log(veriResponse.data.tramite.nombre)
@@ -33,7 +33,7 @@ const Dictamen = () => {
       if (veriResponse.data) {
         setAlertaExp({ message: mensajesAlert.existe, type: 'success' });
 
-        const emailiResponse = await axios.get(`https://fimgc-back.rj.r.appspot.com/api/expediente/emaili/${inputNroDoc}`);
+        const emailiResponse = await axios.get(`https://backfimgc.azurewebsites.net/api/expediente/emaili/${inputNroDoc}`);
         console.log(emailiResponse.data);
         setInteresadoEmail(emailiResponse.data);
 
@@ -95,7 +95,7 @@ const Dictamen = () => {
         "fechaGeneracion": documentoDictamen.fechaGeneracion,
         "resultado": documentoDictamen.resultado,
       };
-      const documentoResponse = await axios.post(`https://fimgc-back.rj.r.appspot.com/api/documento/${nroDoc}/actualizarDictamen`, dataToSendDoc);
+      const documentoResponse = await axios.post(`https://backfimgc.azurewebsites.net/api/documento/${nroDoc}/actualizarDictamen`, dataToSendDoc);
       //const rutaArchivo = uploadResponse.data;
       console.log(documentoResponse);
 
@@ -104,7 +104,7 @@ const Dictamen = () => {
         formData.append('file', archivoSeleccionado); // Añade el archivo seleccionado al FormData
         formData.append('nroExpediente', nroDoc);
         // Envía el archivo al backend para guardarlo
-        const uploadResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/api/expediente/upload', formData);
+        const uploadResponse = await axios.post('https://backfimgc.azurewebsites.net/api/expediente/upload', formData);
         const rutaArchivo = uploadResponse.data;
 
         if (uploadResponse.data && tramiteExpediente === 'Obtención de Bachiller') {
@@ -120,7 +120,7 @@ const Dictamen = () => {
             "body": "Hola :)",
             "pdfFilePath": rutaArchivo
           };
-          const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSendEmail);
+          const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSendEmail);
           console.log('Correo enviado:', sendResponse.data);
           setEnvioExitoso(true);
           setShouldReload(true);
@@ -137,7 +137,7 @@ const Dictamen = () => {
             "body": "Hola :)",
             "pdfFilePath": rutaArchivo
           };
-          const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSendEmail);
+          const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSendEmail);
           console.log('Correo enviado:', sendResponse.data);
           setEnvioExitoso(true);
           setShouldReload(true);
@@ -154,7 +154,7 @@ const Dictamen = () => {
             "body": "Hola :)",
             "pdfFilePath": rutaArchivo
           };
-          const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSendEmail);
+          const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSendEmail);
           console.log('Correo enviado:', sendResponse.data);
           setEnvioExitoso(true);
           setShouldReload(true);
@@ -171,7 +171,7 @@ const Dictamen = () => {
             "body": "Hola :)",
             "pdfFilePath": rutaArchivo
           };
-          const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSendEmail);
+          const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSendEmail);
           console.log('Correo enviado:', sendResponse.data);
           setEnvioExitoso(true);
           setShouldReload(true);

@@ -41,7 +41,7 @@ const Expediente = () => {
         setNroDoc(inputNroDoc);
         console.log(inputNroDoc);
         try {
-            const veriResponse = await axios.get(`https://fimgc-back.rj.r.appspot.com/api/expediente/${inputNroDoc}`);
+            const veriResponse = await axios.get(`https://backfimgc.azurewebsites.net/api/expediente/${inputNroDoc}`);
             console.log(veriResponse.data);
 
             setInteresadoEmail(user.username);
@@ -79,7 +79,7 @@ const Expediente = () => {
 
     const handleBuscarMiembro = () => {
         axios
-            .get(`https://fimgc-back.rj.r.appspot.com/users/buscarDocentes?firstName=${nombreMiembro}`)
+            .get(`https://backfimgc.azurewebsites.net/users/buscarDocentes?firstName=${nombreMiembro}`)
             .then((response) => {
                 if (response.data && response.data.length > 0) {
                     setDocentes(response.data);
@@ -95,7 +95,7 @@ const Expediente = () => {
 
     const handleBuscarPresidente = () => {
         axios
-            .get(`https://fimgc-back.rj.r.appspot.com/users/buscarDocentes?firstName=${nombrePresidente}`)
+            .get(`https://backfimgc.azurewebsites.net/users/buscarDocentes?firstName=${nombrePresidente}`)
             .then((response) => {
                 if (response.data && response.data.length > 0) {
                     setDocentes(response.data);
@@ -206,7 +206,7 @@ const Expediente = () => {
                 "nroDictEscuela": expediente.nroDictEscuela,
                 "fechaDictEscuela": expediente.fechaDictEscuela,
             };
-            const documentoResponse = await axios.post(`https://fimgc-back.rj.r.appspot.com/api/expediente/${nroDoc}/actualizarExpedienteEscuela?miembroId=${miembroId}&presidenteId=${presidenteId}`, dataToSendDoc);
+            const documentoResponse = await axios.post(`https://backfimgc.azurewebsites.net/api/expediente/${nroDoc}/actualizarExpedienteEscuela?miembroId=${miembroId}&presidenteId=${presidenteId}`, dataToSendDoc);
             //const rutaArchivo = uploadResponse.data;
             console.log(documentoResponse);
 
@@ -215,7 +215,7 @@ const Expediente = () => {
                 formData.append('file', archivoSeleccionado); // Añade el archivo seleccionado al FormData
                 formData.append('nroExpediente', nroDoc);
                 // Envía el archivo al backend para guardarlo
-                const uploadResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/api/expediente/upload', formData);
+                const uploadResponse = await axios.post('https://backfimgc.azurewebsites.net/api/expediente/upload', formData);
                 const rutaArchivo = uploadResponse.data;
 
                 if (uploadResponse.data) {
@@ -232,7 +232,7 @@ const Expediente = () => {
                         "body": "Holiwi :3",
                         "pdfFilePath": rutaArchivo
                     };
-                    const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSendEmail);
+                    const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSendEmail);
                     console.log('Correo enviado:', sendResponse.data);
                     setEnvioExitoso(true);
                     setShouldReload(true);

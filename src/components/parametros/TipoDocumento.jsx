@@ -45,7 +45,7 @@ const TipoDocumento = () => {
   //Funcion para eliminar tipoDocumento
   function eliminarTipoDocumento(id) {
     axios
-      .delete(`https://fimgc-back.rj.r.appspot.com/api/tipoDocumento/${id}`)
+      .delete(`https://backfimgc.azurewebsites.net/api/tipoDocumento/${id}`)
       .then((response) => {
         setTiposDocumentos(
           tiposDocumentos.filter((tipoDocumento) => tipoDocumento.id !== id)
@@ -58,7 +58,7 @@ const TipoDocumento = () => {
   //Para poder observar la lista de elementos en la tabla
   function cargarElementos() {
     axios
-      .get("https://fimgc-back.rj.r.appspot.com/api/tipoDocumento")
+      .get("https://backfimgc.azurewebsites.net/api/tipoDocumento")
       .then((response) => {
         setTiposDocumentos(response.data);
       })
@@ -80,7 +80,7 @@ const TipoDocumento = () => {
       //aquí va lo del axios para actualizar los datos
       axios
         .put(
-          `https://fimgc-back.rj.r.appspot.com/api/tipoDocumento/${tipoDocumentoSeleccionadoId}`,
+          `https://backfimgc.azurewebsites.net/api/tipoDocumento/${tipoDocumentoSeleccionadoId}`,
           {
             nombre: nombre,
             sigla: sigla,
@@ -124,7 +124,7 @@ const TipoDocumento = () => {
       setShowAlert(false);
       handleOcultarModalAgregarTD();
       axios
-        .post("https://fimgc-back.rj.r.appspot.com/api/tipoDocumento", {
+        .post("https://backfimgc.azurewebsites.net/api/tipoDocumento", {
           nombre: nombre,
           sigla: sigla,
           descripcion: descripcion,

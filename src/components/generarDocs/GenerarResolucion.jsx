@@ -23,12 +23,12 @@ const GenerarResolucion = () => {
     setNroDoc(inputNroDoc);
     console.log(inputNroDoc);
     try {
-      const veriResponse = await axios.get(`https://fimgc-back.rj.r.appspot.com/api/expediente/${inputNroDoc}`);
+      const veriResponse = await axios.get(`https://backfimgc.azurewebsites.net/api/expediente/${inputNroDoc}`);
       console.log(veriResponse.data);
       setTramiteExpediente(veriResponse.data.tramite.nombre);
       console.log(veriResponse.data.tramite.nombre);
 
-      const emailiResponse = await axios.get(`https://fimgc-back.rj.r.appspot.com/api/expediente/todoi/${inputNroDoc}`);
+      const emailiResponse = await axios.get(`https://backfimgc.azurewebsites.net/api/expediente/todoi/${inputNroDoc}`);
       console.log(emailiResponse.data);
 
       //destinatarios.push({id: '2', firstName: 'Usuario', LastName: 'Interesado', username: 'emailiResponse.data'});
@@ -108,7 +108,7 @@ const GenerarResolucion = () => {
 
   const handleBuscarClick = () => {
     axios
-      .get(`https://fimgc-back.rj.r.appspot.com/users/buscarDocentes?firstName=${nombreSecredocente}`)
+      .get(`https://backfimgc.azurewebsites.net/users/buscarDocentes?firstName=${nombreSecredocente}`)
       .then((response) => {
         if (response.data && response.data.length > 0) {
           setDocentes(response.data);
@@ -158,13 +158,13 @@ const GenerarResolucion = () => {
     if (tramiteExpediente === 'Borrador de Tesis') {
       // Enviar la información al backend
       axios
-        .post(`https://fimgc-back.rj.r.appspot.com/api/documento/${nroDoc}/actualizarSustentacion?secredocenteId=${secredocenteId}`, documento)
+        .post(`https://backfimgc.azurewebsites.net/api/documento/${nroDoc}/actualizarSustentacion?secredocenteId=${secredocenteId}`, documento)
         .then((response) => {
           // Procesar la respuesta del backend si es necesario
           console.log('Expediente creado exitosamente:', response.data);
 
           //Endpoint de generaacion
-          const url = `https://fimgc-back.rj.r.appspot.com/reporte/RDBorrador/download?NroExp=${nroDoc}&tipo=PDF`;
+          const url = `https://backfimgc.azurewebsites.net/reporte/RDBorrador/download?NroExp=${nroDoc}&tipo=PDF`;
           window.open(url, '_blank');
         })
         .catch((error) => {
@@ -176,13 +176,13 @@ const GenerarResolucion = () => {
       // Enviar la información al backend
       const fechaSesionCFDate = new Date(fechaSesionCF); // Convert fechaSesionCF string to Date
       axios
-        .post(`https://fimgc-back.rj.r.appspot.com/api/documento/${nroDoc}/actualizarSesionCF?fechaSesionCF=${fechaSesionCFDate}`)
+        .post(`https://backfimgc.azurewebsites.net/api/documento/${nroDoc}/actualizarSesionCF?fechaSesionCF=${fechaSesionCFDate}`)
         .then((response) => {
           // Procesar la respuesta del backend si es necesario
           console.log('Expediente creado exitosamente:', response.data);
 
           //Endpoint de generaacion
-          const url = `https://fimgc-back.rj.r.appspot.com/reporte/RCFBachiller/download?NroExp=${nroDoc}&tipo=PDF`;
+          const url = `https://backfimgc.azurewebsites.net/reporte/RCFBachiller/download?NroExp=${nroDoc}&tipo=PDF`;
           window.open(url, '_blank');
         })
         .catch((error) => {
@@ -194,13 +194,13 @@ const GenerarResolucion = () => {
       // Enviar la información al backend
       const fechaSesionCFDate = new Date(fechaSesionCF); // Convert fechaSesionCF string to Date
       axios
-        .post(`https://fimgc-back.rj.r.appspot.com/api/documento/${nroDoc}/actualizarSesionCF?fechaSesionCF=${fechaSesionCFDate}`)
+        .post(`https://backfimgc.azurewebsites.net/api/documento/${nroDoc}/actualizarSesionCF?fechaSesionCF=${fechaSesionCFDate}`)
         .then((response) => {
           // Procesar la respuesta del backend si es necesario
           console.log('Expediente creado exitosamente:', response.data);
 
           //Endpoint de generaacion
-          const url = `https://fimgc-back.rj.r.appspot.com/reporte/RCFTitulo/download?NroExp=${nroDoc}&tipo=PDF`;
+          const url = `https://backfimgc.azurewebsites.net/reporte/RCFTitulo/download?NroExp=${nroDoc}&tipo=PDF`;
           window.open(url, '_blank');
         })
         .catch((error) => {
@@ -209,7 +209,7 @@ const GenerarResolucion = () => {
         });
 
     } else {
-      const url = `https://fimgc-back.rj.r.appspot.com/reporte/RDPlan/download?NroExp=${nroDoc}&tipo=PDF`;
+      const url = `https://backfimgc.azurewebsites.net/reporte/RDPlan/download?NroExp=${nroDoc}&tipo=PDF`;
       window.open(url, '_blank');
     }
 
@@ -251,7 +251,7 @@ const GenerarResolucion = () => {
       formData.append('nroExpediente', nroDoc);
 
       // Envía el archivo al backend para guardarlo
-      const uploadResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/api/expediente/upload', formData);
+      const uploadResponse = await axios.post('https://backfimgc.azurewebsites.net/api/expediente/upload', formData);
       const rutaArchivo = uploadResponse.data;
 
       if (uploadResponse.data && tramiteExpediente === 'Obtención de Bachiller') {
@@ -265,7 +265,7 @@ const GenerarResolucion = () => {
           "body": "Estimados docentes, se remite el RCF de obtencion del grado Bachiller.",
           "pdfFilePath": rutaArchivo
         };
-        const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSend);
+        const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSend);
         console.log('Correo enviado:', sendResponse.data);
         setEnvioExitoso(true);
         setShouldReload(true);
@@ -280,7 +280,7 @@ const GenerarResolucion = () => {
           "body": "Estimados docentes, se remite la Resolucion de aprobacion del Plan de Tesis del Bach.",
           "pdfFilePath": rutaArchivo
         };
-        const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSend);
+        const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSend);
         console.log('Correo enviado:', sendResponse.data);
         setEnvioExitoso(true);
         setShouldReload(true);
@@ -295,7 +295,7 @@ const GenerarResolucion = () => {
           "body": "Estimados docentes, se remite la Resolucion de aprobacion del borrador de Tesis del Bach.",
           "pdfFilePath": rutaArchivo
         };
-        const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSend);
+        const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSend);
         console.log('Correo enviado:', sendResponse.data);
         setEnvioExitoso(true);
         setShouldReload(true);
@@ -311,7 +311,7 @@ const GenerarResolucion = () => {
           "body": "Estimados docentes, se remite el RCF de obtencion del titulo profesional del Bach.",
           "pdfFilePath": rutaArchivo
         };
-        const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSend);
+        const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSend);
         console.log('Correo enviado:', sendResponse.data);
         setEnvioExitoso(true);
         setShouldReload(true);

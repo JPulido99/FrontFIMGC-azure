@@ -45,7 +45,7 @@ const GenerarMemorandum = () => {
         setNroDoc(inputNroDoc);
 
         try {
-            const response = await axios.get(`https://fimgc-back.rj.r.appspot.com/api/expediente/${inputNroDoc}`);
+            const response = await axios.get(`https://backfimgc.azurewebsites.net/api/expediente/${inputNroDoc}`);
             console.log(response.data)
             setTramiteExpediente(response.data.tramite.nombre)
             console.log(response.data.tramite.nombre)
@@ -63,7 +63,7 @@ const GenerarMemorandum = () => {
                 const asesorId = response.data.asesor.id;
 
                 // Hacer una nueva consulta para obtener los datos del asesor por su ID
-                const asesorResponse = await axios.get(`https://fimgc-back.rj.r.appspot.com/users/findUsuarioById/${asesorId}`);
+                const asesorResponse = await axios.get(`https://backfimgc.azurewebsites.net/users/findUsuarioById/${asesorId}`);
                 if (asesorResponse.data) {
                     const nombreAsesor = `${asesorResponse.data.firstName} ${asesorResponse.data.lastName}`;
                     setAsesor(nombreAsesor);
@@ -126,7 +126,7 @@ const GenerarMemorandum = () => {
         // Solo permitir búsqueda si no se han realizado 2 búsquedas aún
         //if (busquedasRealizadas < 2) {
         axios
-            .get(`https://fimgc-back.rj.r.appspot.com/users/buscarDocentes?firstName=${nombre}`)
+            .get(`https://backfimgc.azurewebsites.net/users/buscarDocentes?firstName=${nombre}`)
             .then((response) => {
                 if (response.data && response.data.length > 0) {
                     setDocentes(response.data);
@@ -179,22 +179,22 @@ const GenerarMemorandum = () => {
                 console.log(docentesSeleccionados);
                 // Enviar la información al backend
                 axios
-                    .post(`https://fimgc-back.rj.r.appspot.com/api/expediente/${nroDoc}/actualizarMiembros?miembroId=${miembroId}&presidenteId=${presidenteId}`)
+                    .post(`https://backfimgc.azurewebsites.net/api/expediente/${nroDoc}/actualizarMiembros?miembroId=${miembroId}&presidenteId=${presidenteId}`)
                     .then((response) => {
                         // Procesar la respuesta del backend si es necesario
                         console.log('Expediente creado exitosamente:', response.data);
 
                         if (tramiteExpediente === 'Obtención de Bachiller') {
                             //Endpoint de generacion para MM de bachiller
-                            const url = `https://fimgc-back.rj.r.appspot.com/reporte/MMBachiller/download?NroExp=${nroDoc}&tipo=PDF`;
+                            const url = `https://backfimgc.azurewebsites.net/reporte/MMBachiller/download?NroExp=${nroDoc}&tipo=PDF`;
                             window.open(url, '_blank');
                         } else if (tramiteExpediente === 'Obtención de Título Profesional') {
                             //Endpoint de generacion para MM de titulo
-                            const url = `https://fimgc-back.rj.r.appspot.com/reporte/MMTitulo/download?NroExp=${nroDoc}&tipo=PDF`;
+                            const url = `https://backfimgc.azurewebsites.net/reporte/MMTitulo/download?NroExp=${nroDoc}&tipo=PDF`;
                             window.open(url, '_blank');
                         } else {
                             //Endpoint de generacion para MM de Plan y Borradora
-                            const url = `https://fimgc-back.rj.r.appspot.com/reporte/MM/download?NroExp=${nroDoc}&tipo=PDF`;
+                            const url = `https://backfimgc.azurewebsites.net/reporte/MM/download?NroExp=${nroDoc}&tipo=PDF`;
                             window.open(url, '_blank');
                         }
                     })
@@ -205,7 +205,7 @@ const GenerarMemorandum = () => {
             }
         } else if (tramiteExpediente === 'Borrador de Tesis') {
             //Endpoint de generacion para MM de Plan y Borradora
-            const url = `https://fimgc-back.rj.r.appspot.com/reporte/MM/download?NroExp=${nroDoc}&tipo=PDF`;
+            const url = `https://backfimgc.azurewebsites.net/reporte/MM/download?NroExp=${nroDoc}&tipo=PDF`;
             window.open(url, '_blank');
 
         } else {
@@ -228,7 +228,7 @@ const GenerarMemorandum = () => {
             formData.append('nroExpediente', nroDoc);
 
             // Envía el archivo al backend para guardarlo
-            const uploadResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/api/expediente/upload', formData);
+            const uploadResponse = await axios.post('https://backfimgc.azurewebsites.net/api/expediente/upload', formData);
             const rutaArchivo = uploadResponse.data;
             if (uploadResponse.data && tramiteExpediente === 'Obtención de Bachiller') {
                 // Si la carga del archivo fue exitosa, continuamos con el envío del correo electrónico
@@ -242,7 +242,7 @@ const GenerarMemorandum = () => {
                     "body": "Estimados docentes, se remite el Memorando Múltiple para la revisión del Expediente del Sr.",
                     "pdfFilePath": rutaArchivo
                 };
-                const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSend);
+                const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSend);
                 console.log('Correo enviado:', sendResponse.data);
                 setEnvioExitoso(true);
                 setShouldReload(true);
@@ -259,7 +259,7 @@ const GenerarMemorandum = () => {
                     "body": "Estimados docentes, se remite el Memorando Múltiple para la revisión del Plan de Tesis del Bach.",
                     "pdfFilePath": rutaArchivo
                 };
-                const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSend);
+                const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSend);
                 console.log('Correo enviado:', sendResponse.data);
                 setEnvioExitoso(true);
                 setShouldReload(true);
@@ -276,7 +276,7 @@ const GenerarMemorandum = () => {
                     "body": "Estimados docentes, se remite el Memorando Múltiple para la revisión del Borrador de Tesis del Bach.",
                     "pdfFilePath": rutaArchivo
                 };
-                const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSend);
+                const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSend);
                 console.log('Correo enviado:', sendResponse.data);
                 setEnvioExitoso(true);
                 setShouldReload(true);
@@ -293,7 +293,7 @@ const GenerarMemorandum = () => {
                     "body": "Estimados docentes, se remite el Memorando Múltiple para la revisión del Expediente del Bach.",
                     "pdfFilePath": rutaArchivo
                 };
-                const sendResponse = await axios.post('https://fimgc-back.rj.r.appspot.com/sendEmail', dataToSend);
+                const sendResponse = await axios.post('https://backfimgc.azurewebsites.net/sendEmail', dataToSend);
                 console.log('Correo enviado:', sendResponse.data);
                 setEnvioExitoso(true);
                 setShouldReload(true);
